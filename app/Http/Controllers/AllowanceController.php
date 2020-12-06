@@ -5,8 +5,10 @@ namespace App\Http\Controllers;
 use App\Models\Allowance;
 use App\Models\Passport;
 use App\Models\CurriculumVitae;
+use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 
 class AllowanceController extends Controller
@@ -28,18 +30,17 @@ class AllowanceController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
     public function create()
     {
-        if(Auth::user() !== null){
-
-            $unemployed = Allowance::where('id', Auth::user()->id)->where('status', 1)->count();
-            return view('allowance.create', ['hasAllowance' => $unemployed]);
+        if (!Auth::check()) {
+            return redirect('login');
         }
-        else{
-            return view('home');
-        }
+        /** @var User $user*/
+        $user = Auth::user();
+        $allowance = $user->unemployed->allowance()->whereIn('status', [1,2])->first();
+        return view('allowance.create', ['hasAllowance' => $allowance]);
     }
 
     /**
@@ -50,32 +51,21 @@ class AllowanceController extends Controller
      */
     public function store(Request $request)
     {
-        $passport = new Passport();
-        $passport->document_name = request('document_name');
-        $passport->number = request('number');
-        $passport->date_of_issue = request('date_of_issue');
-        $passport->issued_by = request('issued_by');
-        $passport->TIN_number = request('TIN_number');
+        if(!Auth::check()){
+            return redirect('/login');
+        }
+        $user = Auth::user();
+        $unemployed = $user->unemployed;
 
+        $passport = new Passport($request->all());
         $passport->save();
 
-        $unemployed = new Allowance();
-        $unemployed->user_id = Auth::user()->id;
-        $unemployed->name = request('name');
-        $unemployed->birthday = request('birthday');
-        $unemployed->citizenship = request('citizenship');
-        $unemployed->passport_id = $passport->id;
-        $unemployed->registration_address = request('registration_address');
-        $unemployed->factual_address = request('factual_address');
-        $unemployed->education_degree = request('education_degree');
-        $unemployed->name_education = request('name_education');
-        $unemployed->last_work_place = request('last_work_place');
-        $unemployed->email = Auth::user()->email;
-        $unemployed->phone = request('phone');
+        $allowance = new Allowance($request->all());
+        $allowance->unemployed_id = $unemployed->id;
+        $allowance->passport_id = $passport->id;
 
-        $unemployed->save();
-
-        return redirect('/allowance');
+        $allowance->save();
+        return redirect('/cv/create');
     }
 
     /**
@@ -86,19 +76,17 @@ class AllowanceController extends Controller
      */
     public function show($id)
     {
-//        dd(CurriculumVitae::where('id', $id)->first());
-        if(CurriculumVitae::where('id', $id) !== null){
-            return view('allowance.show', [
-                'unemployed' => Allowance::where('id', $id)->firstOrFail(),
-                'unemployed_CV' => CurriculumVitae::where('id', $id)->first()
-
-            ]);
-        }else{
+//        if (CurriculumVitae::where('id', $id) !== null) {
+//            return view('allowance.show', [
+//                'unemployed' => Allowance::where('id', $id)->firstOrFail(),
+//                'unemployed_CV' => CurriculumVitae::where('unemployed_id', $id)->get()
+//            ]);
+//        } else {
             return view('allowance.show', [
                 'unemployed' => Allowance::where('id', $id)->firstOrFail()
 
             ]);
-        }
+//        }
 
     }
 
@@ -110,6 +98,9 @@ class AllowanceController extends Controller
      */
     public function edit($id)
     {
+        if(!Auth::check()){
+            return redirect('/login');
+        }
         $unemployed = Allowance::find($id);
         return view('allowance.edit', compact('unemployed'));
     }
@@ -145,5 +136,23 @@ class AllowanceController extends Controller
             $age--;
         }
         return $age;
+    }
+
+    public function showUserAllowances()
+    {
+        $allowances = DB::table('users')
+            ->join('unemployeds', function ($join) {
+                $join->on('users.id', '=', 'unemployeds.user_id')
+                    ->where('users.id', Auth::user()->id);
+            })
+            ->join('allowances', 'allowances.unemployed_id', '=', 'unemployeds.id')
+            ->select([
+                'users.id as id',
+                'allowances.id as id',
+                'allowances.citizenship as citizenship',
+//                'curriculum_vitaes.cv_name as title',
+            ])
+            ->get();
+        return view('allowance.my-allowances', ['allowances' => $allowances]);
     }
 }

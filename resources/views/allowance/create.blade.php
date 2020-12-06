@@ -19,12 +19,17 @@
 
 
         @else
-            @if($hasAllowance > 0)
+            {{--            @if($hasAllowance && $hasAllowance->status == 1)--}}
+            @if($hasAllowance)
+{{--                @foreach($hasAllowance as $allowance)--}}
+
+{{--                    <p>{{$hasAllowance->status}}</p>--}}
+{{--                @endforeach--}}
                 <div class="entered-block">
                     <h1>Ви вже оформили заявку на отримання посібника! Ваша заявка обробляється!</h1>
                     <div class="entered-block-link">
-                        <a href="/employee" class="btn-dark-blue">Переглянути усіх роботодавців</a>
-                        <a href="/allowance" class="btn-dark-blue">Переглянути усіх безробіних</a>
+                        <a href="/vacancy" class="btn-dark-blue">Переглянути усі вакансії</a>
+                        <a href="/cv" class="btn-dark-blue">Переглянути усі резюме</a>
                     </div>
                 </div>
             @else
@@ -106,7 +111,8 @@
                         </div>
                         <div class="mb-3">
                             <label for="registration_address">Адреса реєстрації місця проживання</label>
-                            <input type="text" class="form-control" id="registration_address" name="registration_address"
+                            <input type="text" class="form-control" id="registration_address"
+                                   name="registration_address"
                             >
                             <div class="invalid-feedback">
                                 Вкажіть адресу реєстрації місця проживання!
@@ -145,14 +151,6 @@
                             <input type="text" class="form-control" id="last_work_place" name="last_work_place">
                             <div class="invalid-feedback">
                                 Вкажіть останнє місце роботи!
-                            </div>
-                        </div>
-                        <div class="mb-3">
-                            <label for="phone">Телефон</label>
-                            <input type="text" class="form-control" id="phone" name="phone"
-                                   required>
-                            <div class="invalid-feedback">
-                                Вкажіть ваш телефон!
                             </div>
                         </div>
                         <button class="btn btn-primary mb-3" type="submit">Зареєструватись</button>

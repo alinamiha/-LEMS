@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Employee;
 use App\Models\JobVacancy;
+use Illuminate\Auth\Events\Validated;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class JobVacancyController extends Controller
 {
@@ -15,9 +18,20 @@ class JobVacancyController extends Controller
      */
     public function index()
     {
-        $vacancies = JobVacancy::where('user_id', Auth::user()->id)->get();
-        $user = Auth::user()->name;
-        return view('vacancy.index', ['vacancies' => $vacancies, 'user' => $user]);
+//        $vacancies = JobVacancy::latest()->get();
+        $vacancies = JobVacancy::query()
+            ->join('employers', 'employers.id', '=' ,'job_vacancies.employer_id')
+            ->join('users', 'employers.user_id', '=' ,'users.id')
+            ->select([
+                'users.name as user_name',
+                'job_vacancies.id as id',
+                'job_vacancies.title as title',
+                'job_vacancies.type_of_working as type_of_working',
+                'job_vacancies.post as post',
+                'job_vacancies.sales as sales',
+            ])
+            ->get();
+        return view('vacancy.index', ['vacancies' => $vacancies]);
     }
 
     /**
@@ -38,20 +52,16 @@ class JobVacancyController extends Controller
      */
     public function store(Request $request)
     {
-        $vacancy = new JobVacancy();
-        $vacancy->title = request('title');
-        $vacancy->type_of_working = request('type_of_working');
-        $vacancy->post = request('post');
-        $vacancy->form_of_work = request('form_of_work');
-        $vacancy->company_name = request('company_name');
-        $vacancy->address = request('address');
-        $vacancy->description = request('description');
-        $vacancy->sales = request('sales');
-        $vacancy->emloyee_id = Auth::user()->id;
+        $user = Auth::user();
+        $employer = $user->employer;
+//        dd($employer);
+
+        $vacancy = new JobVacancy($request->all());
+        $vacancy->employer_id = $employer->id;
 
         $vacancy->save();
 
-        return redirect('/my-account');
+        return redirect('/my-vacancies');
     }
 
     /**
@@ -60,9 +70,28 @@ class JobVacancyController extends Controller
      * @param  \App\Models\JobVacancy  $jobVacancy
      * @return \Illuminate\Http\Response
      */
-    public function show(JobVacancy $jobVacancy)
+    public function show($id)
     {
-        //
+        $vacancy = JobVacancy::where('job_vacancies.id', $id)
+            ->join('employers', 'employers.id', '=' ,'job_vacancies.employer_id')
+            ->join('users', 'employers.user_id', '=' ,'users.id')
+            ->select([
+                'users.name as user_name',
+                'users.email as user_email',
+                'job_vacancies.title as title',
+                'job_vacancies.type_of_working as type_of_working',
+                'job_vacancies.post as post',
+                'job_vacancies.form_of_work as form_of_work',
+                'job_vacancies.company_name as company_name',
+                'job_vacancies.address as address',
+                'job_vacancies.description as description',
+                'job_vacancies.sales as sales',
+            ])
+            ->first();
+        return view(    'vacancy.show', [
+            'vacancy' => $vacancy
+
+        ]);
     }
 
     /**
@@ -97,5 +126,20 @@ class JobVacancyController extends Controller
     public function destroy(JobVacancy $jobVacancy)
     {
         //
+    }
+    public function showUserVacancies(){
+        $vacancies= DB::table('users')
+            ->join('employers', function ($join) {
+                $join->on('users.id', '=', 'employers.user_id')
+                    ->where('users.id', Auth::user()->id);
+            })
+            ->join('job_vacancies', 'job_vacancies.employer_id', '=', 'employers.id')
+            ->select([
+                'users.id as id',
+                'job_vacancies.id as id',
+                'job_vacancies.title as title',
+            ])
+            ->get();
+        return view('vacancy.my-vacancies', ['vacancies' => $vacancies]);
     }
 }

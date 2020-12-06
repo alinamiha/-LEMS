@@ -20,3 +20,29 @@
 $height = $(window).height() - ($('header').height() + $('footer').height())
 $('.content').css('min-height' , $height)
 
+$('.option-list-toggle-btn').on('click', function (){
+    $('.option-list-toggle').slideToggle();
+})
+$('.vacancy-list-toggle-btn').on('click', function (){
+    $('.vacancy-list').slideToggle();
+})
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

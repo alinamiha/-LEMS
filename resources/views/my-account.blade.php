@@ -2,84 +2,24 @@
 
 @section('content')
     <section>
-        <h1>aaaaaa</h1>
-        <a href="/cv/create">link</a>
+        <h1>Особистий акаунт</h1>
+        <ul>
+            <li><a href="">Особисті дані</a></li>
+            @if($user->type === "unemployed")
+                <li><a href="/record-of-services/create">Мій послужний список</a></li>
+                <li><a href="/allowance/create">Оформити заявку на отримання допомоги</a></li>
+                <li><a href="/my-allowances">Мої заявки на отримання пособія</a></li>
+                <li><a href="/cv/create">Додати резюме</a></li>
+                <li><a href="/my-cv">Мої резюме</a></li>
+                <li><a href="/job-offer">Відгуки від роботодавців</a></li>
+            @elseif($user->type === "employer")
+                <li><a href="/vacancy/create">Додати вакансію</a></li>
+                <li><a href="/my-vacancies">Мої вакансії</a></li>
+{{--                <li><a href="">Відгуки від робітників</a></li>--}}
+            @endif
+        </ul>
     </section>
-
-
-
-
-
-
-    <section>
-        <form method="POST" action="/unemployed" class="form-search needs-validation" >
-            @csrf
-            <div class="form-column">
-                <div class="mb-3">
-                    <label for="validationCustom01">ПІБ</label>
-                    <input type="text" class="form-control" id="validationCustom01" name="name" required>
-                    <div class="invalid-feedback">
-                        Введіть ПІБ!
-                    </div>
-                </div>
-                <div class="mb-3">
-                    <label for="validationCustom01">Дата народження</label>
-                    <input type="text" class="form-control" id="validationCustom02" name="birthday"required>
-                    <div class="invalid-feedback">
-                        Введіть дату!
-                    </div>
-                </div>
-                <div class="mb-3">
-                    <label for="validationCustom01">Громадянство</label>
-                    <input type="text" class="form-control" id="validationCustom02" name="citizenship" required>
-                    <div class="invalid-feedback">
-                        Вкажіть населений пункт!
-                    </div>
-                </div>
-                <div class="mb-3">
-                    <label for="validationCustom01">Адреса реєстрації місця проживання</label>
-                    <input type="text" class="form-control" id="validationCustom02" name="registration_address" required>
-                    <div class="invalid-feedback">
-                        Вкажіть населений пункт!
-                    </div>
-                </div>
-                <div class="mb-3">
-                    <label for="validationCustom01">Адреса фактичного місця проживання</label>
-                    <input type="text" class="form-control" id="validationCustom02" name="factual_address" required>
-                    <div class="invalid-feedback">
-                        Вкажіть населений пункт!
-                    </div>
-                </div>
-                <div class="mb-3">
-                    <label for="validationCustom01">Рівень освіти</label>
-                    <input type="text" class="form-control" id="validationCustom02" name="education_degree" required>
-                    <div class="invalid-feedback">
-                        Вкажіть населений пункт!
-                    </div>
-                </div>
-                <div class="mb-3">
-                    <label for="validationCustom01">Найменування закладу освіти</label>
-                    <input type="text" class="form-control" id="validationCustom02" name="name_education" required>
-                    <div class="invalid-feedback">
-                        Вкажіть населений пункт!
-                    </div>
-                </div>
-                <div class="mb-3">
-                    <label for="validationCustom01">Останнє місце роботи</label>
-                    <input type="text" class="form-control" id="validationCustom02" name="last_work_place" required>
-                    <div class="invalid-feedback">
-                        Вкажіть населений пункт!
-                    </div>
-                </div>
-                <div class="mb-3">
-                    <label for="validationCustom01">Телефон</label>
-                    <input type="text" class="form-control" id="validationCustom02" name="telephone" required>
-                    <div class="invalid-feedback">
-                        Вкажіть населений пункт!
-                    </div>
-                </div>
-            </div>
-            <button class="btn btn-primary mb-3" type="submit">Редагувати</button>
-        </form>
-    </section>
+    @if(Auth::user()->type == "admin")
+        <a href="{{route('admin')}}">Admin</a>
+    @endif
 @endsection

@@ -23,8 +23,10 @@ class CreateJobVacanciesTable extends Migration
             $table->string('address');
             $table->string('description');
             $table->float('sales');
-            $table->unsignedBigInteger('emloyee_id');
+            $table->unsignedBigInteger('employer_id');
             $table->timestamps();
+
+
         });
     }
 

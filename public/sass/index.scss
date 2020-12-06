@@ -13,13 +13,23 @@ h1, h2, h3, p, li, label {
 ul {
     list-style: none;
 }
+.info-for-user{
+    background-color: red;
+}
 
 .content {
-    padding: 40px 0;
+
 
     section {
-        display: flex;
-        justify-content: space-between;
+        //display: flex;
+        //justify-content: space-between;
+        padding: 40px 0 0 0 ;
+        &:last-child{
+            padding-bottom: 40px;
+        }
+        h1,h2{
+            text-align: center;
+        }
 
         .form-search {
             width: 50%;
@@ -127,17 +137,25 @@ ul {
             }
         }
         .wrap-users-info{
+            display: flex;
+           justify-content: space-around;
+            flex-wrap: wrap;
 
             .users-info{
                 display: block;
                 border: 2px solid $color;
                 padding: 30px;
                 width: 100%;
-                margin-bottom: 30px;
+                max-width: 45%;
+                margin: 10px;
+                h2{
+                    text-align: left;
+                }
                 ul{
                     padding-inline-start: 0;
                     padding-bottom: 0;
                     li{
+                        font-size: 18px;
                         b{
                             margin-right: 10px;
                         }
@@ -146,8 +164,9 @@ ul {
                 a{
                     display: block;
                     color: $color;
-                    font-size: 24px;
-                    text-align: right;
+                    font-size: 16px;
+                    margin-top: 15px;
+                    //text-align: right;
                     text-decoration: none;
                     &:hover{
                         text-decoration: underline;
@@ -155,7 +174,11 @@ ul {
                 }
             }
             &.users-info-details{
+                flex-direction: column;
                 width: 100%;
+                h1{
+                    text-align: left;
+                }
                 .wrap-span{
                     display: flex;
                     flex-direction: column;
@@ -175,5 +198,97 @@ ul {
                 }
             }
         }
+        .wrap-cat{
+            display: flex;
+            .item-cat{
+                width: 300px;
+                height: 300px;
+                background-image: url("/img/new_teacher.jpeg");
+                background-repeat: no-repeat;
+                background-size: cover;
+                background-position: center;
+                &:hover{
+                    opacity: 0.7;
+                }
+            }
+        }
+        .my-account-wrap-info{
+            background: #0a2351;
+            width: 100%;
+            height: 100px;
+            margin-bottom: 25px;
+            text-align: center;
+            align-items: center;
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+            span{
+                font-size: 30px;
+                color: #ffffff;
+            }
+            a{
+                font-size: 20px;
+                font-weight: bold;
+                color: #ffffff;
+            }
+        }
     }
+}
+.option-list-toggle{
+    display: none;
+    background-color: #fff;
+    width: 100%;
+    position: absolute;
+    right: 0;
+    max-width: 300px;
+    margin-top: 25px;
+    box-shadow: -9px 12px 20px 6px #9c9898;
+    padding: 0 20px;
+    z-index: 10;
+}
+.vacancy-list{
+    margin: 20px 0;
+    border: 2px solid #1b1e21;
+    padding: 25px;
+    display: none;
+    .vacancy-list-item{
+        display: flex;
+        label{
+            order: 2;
+        }
+        input[type="checkbox"]{
+            width: 20px;
+            height: 20px;
+            align-items: center;
+            justify-content: center;
+            margin-right: 10px;
+        }
+    }
+}
+.record-of-services-wrap{
+    display: flex;
+    section{
+        width: 50%;
+        margin-right: 40px;
+
+        &.record-of-services-section{
+
+            form{
+                width: 100%;
+            }
+        }
+    }
+}
+.wrap-btn-work{
+    display: flex;
+    flex-wrap: wrap;
+
+    button{
+        width: 100px;
+    }
+}
+.main-page-img{
+    margin: 0 auto;
+    display: block;
+    width: 800px;
 }

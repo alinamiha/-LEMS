@@ -8,4 +8,21 @@ use Illuminate\Database\Eloquent\Model;
 class JobVacancy extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        'title',
+        'type_of_working',
+        'post',
+        'form_of_work',
+        'company_name',
+        'address',
+        'description',
+        'sales',
+    ];
+
+    public function employer()
+    {
+
+        return $this->belongsTo('App\Models\Employer');
+    }
 }

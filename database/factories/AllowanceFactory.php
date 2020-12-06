@@ -4,6 +4,7 @@ namespace Database\Factories;
 
 use App\Models\Allowance;
 use App\Models\Passport;
+use App\Models\Unemployed;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
@@ -25,10 +26,7 @@ class AllowanceFactory extends Factory
     public function definition()
     {
         return [
-            'user_id' => function(){
-            return User::factory()->create()->id;
-            },
-            'name' => $this->faker->name,
+            'unemployed_id' => 1,
             'birthday' => $this->faker->date($format = 'Y-m-d', $max = 'now'),
             'citizenship' => $this->faker->randomElement($array = array ('Українець', 'Українка')),
             'passport_id' => function(){
@@ -39,8 +37,6 @@ class AllowanceFactory extends Factory
             'education_degree' => $this->faker->randomElement($array = array ('Середнє', 'Вище','Незакінчене вище', 'Без освіти')),
             'name_education' => $this->faker->randomElement($array = array ('ОНПУ', 'ОНМУ','МГУ', 'ОГРПУ')),
             'last_work_place' => $this->faker->company,
-            'email' => $this->faker->unique()->safeEmail,
-            'phone' => $this->faker->e164PhoneNumber,
             'status' => $this->faker->numberBetween(0,2)
         ];
 

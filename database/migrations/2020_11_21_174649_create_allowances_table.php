@@ -15,8 +15,7 @@ class CreateAllowancesTable extends Migration
     {
         Schema::create('allowances', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('user_id');
-            $table->string('name');
+            $table->unsignedBigInteger('unemployed_id');
             $table->date('birthday');
             $table->string('citizenship');
             $table->unsignedBigInteger('passport_id');
@@ -25,11 +24,11 @@ class CreateAllowancesTable extends Migration
             $table->string('education_degree');
             $table->string('name_education')->nullable();
             $table->string('last_work_place')->nullable();
-            $table->string('email');
-            $table->string('phone');
             $table->integer('status')->default(1);
             $table->timestamps();
         });
+
+
     }
 
     /**

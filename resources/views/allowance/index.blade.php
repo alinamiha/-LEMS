@@ -2,6 +2,7 @@
 
 @section('content')
     <section>
+        <h1>Користувачі шукаючі роботу</h1>
         <div class="wrap-users-info">
             @foreach($unemployed as $worker)
                 <div class="users-info">

@@ -2,7 +2,7 @@
 
 namespace Database\Factories;
 
-use App\Models\Employee;
+use App\Models\Employer;
 use App\Models\JobVacancy;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
@@ -23,7 +23,7 @@ class JobVacancyFactory extends Factory
     public function definition()
     {
         return [
-            'title' => $this->faker->title,
+            'title' => $this->faker->text,
             'type_of_working' => $this->faker->randomElement($array = array ('It-сфера','Кур\'єр', 'Такси', 'Мореплавець')),
             'post' => $this->faker->randomElement($array = array ('Директор','Виконавець', "Молодший специалист")),
             'form_of_work' => $this->faker->randomElement($array = array ('Дистанційно','В офісі')),
@@ -31,9 +31,7 @@ class JobVacancyFactory extends Factory
             'address' => $this->faker->address,
             'description' => $this->faker->paragraph,
             'sales' => $this->faker->numberBetween($min = 1000, $max = 20000),
-            'emloyee_id' => function(){
-                return Employee::factory()->create()->id;
-            }
+            'employer_id' => 1
         ];
     }
 }

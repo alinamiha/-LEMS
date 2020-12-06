@@ -2,7 +2,7 @@
 
 @section('content')
     <section>
-        <h1>Create Vacancy</h1>
+        <h1>Додати вакансію</h1>
         <form method="POST" action="/vacancy" class="form-search needs-validation">
             @csrf
             <div class="form-column">
@@ -54,13 +54,14 @@
                 </div>
                 <div class="mb-3">
                     <label for="description">Опис вакансії</label>
-                    <input type="text" class="form-control" id="description" name="description">
+                    <textarea type="text" class="form-control" id="description" name="description">
+                    </textarea>
                     <div class="invalid-feedback">
                         Вкажіть посаду!
                     </div>
                 </div>
                 <div class="mb-3">
-                    <label for="sales">Опис вакансії</label>
+                    <label for="sales">Заробітна плата</label>
                     <input type="number" class="form-control" id="sales" name="sales">
                     <div class="invalid-feedback">
                         Вкажіть посаду!

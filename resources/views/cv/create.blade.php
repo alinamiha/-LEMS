@@ -1,6 +1,11 @@
 @extends('layout')
 
 @section('content')
+    @if(empty(Auth::user()->unemployed->allowance))
+    <section>
+        <h1>You can't create the CV</h1>
+    </section>
+    @endif
     <section>
         <h1>Create CV</h1>
         <form method="POST" action="/cv" class="form-search needs-validation">
@@ -29,6 +34,20 @@
                         <option value="Електрика">Електрика</option>
                         <option value="Водій">Водій</option>
                         <option value="Мореплавець">Мореплавець</option>
+                    </select>
+                    <div class="invalid-feedback">
+                        Вкажіть тип дільності!
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label for="city">Місто проживання</label>
+                    <select id="city" name="city"
+                            class="form-control @error('type') is-invalid @enderror" required>
+                        <option value="Одеса">Одеса</option>
+                        <option value="Киів">Киів</option>
+                        <option value="Харків">Харків</option>
+                        <option value="Херсон">Херсон</option>
+                        <option value="Херсон">Луцьк</option>
                     </select>
                     <div class="invalid-feedback">
                         Вкажіть тип дільності!

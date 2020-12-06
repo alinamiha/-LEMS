@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\CurriculumVitae;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller

@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Passport extends Model
 {
     use HasFactory;
+
     protected $fillable = [
         'document_name',
         'number',
@@ -15,4 +16,10 @@ class Passport extends Model
         'issued_by',
         'TIN_number'
     ];
+
+    public function allowance()
+    {
+
+        return $this->belongsTo('App\Models\Allowance');
+    }
 }

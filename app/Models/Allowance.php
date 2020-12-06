@@ -5,33 +5,42 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
+/**
+ * Class Allowance
+ * @package App\Models
+ *
+ * @property int $unemployed_id
+ */
 class Allowance extends Model
 {
     use HasFactory;
 
     protected $fillable = [
-        'user_id',
-        'name',
         'birthday',
         'citizenship',
-        'passport_id',
         'registration_address',
         'factual_address',
         'education_degree',
         'name_education',
         'last_work_place',
-        'email',
-        'phone',
         'status'
     ];
 
-    public function user(){
 
-        return $this->belongsTo('App\Models\User', 'foreign_key');
+    public function unemployed()
+    {
+
+        return $this->belongsTo('App\Models\Unemployed');
     }
 
-    public function passport(){
+    public function passport()
+    {
 
-        return $this->belongsTo('App\Models\Passport', 'foreign_key');
+        return $this->belongsTo('App\Models\Passport');
+    }
+
+    public function payment()
+    {
+        return $this->hasMany('App\Models\Payment');
     }
 }

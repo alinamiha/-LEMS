@@ -15,12 +15,15 @@ class CreateCurriculumVitaesTable extends Migration
     {
         Schema::create('curriculum_vitaes', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('unemployed_id');
             $table->string('cv_name');
             $table->text('description');
             $table->string('type_of_working');
+            $table->string('city');
             $table->string('post');
             $table->timestamps();
+
+
         });
     }
 

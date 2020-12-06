@@ -5,6 +5,7 @@
 
         <section>
             <div class="wrap-article">
+                @if(!$allowance)
                 <article>
                     <h2>
                         Отримання посібника про безробіття!
@@ -19,6 +20,13 @@
                     </p>
                     <a class="btn-dark-blue" href="/allowance/create">Реєстрація на отримання посібника</a>
                 </article>
+                @else
+                    <article>
+                        <h2 class="info-for-user">
+                            Ваша заявка зараз знаходить в статусі обробки!
+                        </h2>
+                    </article>
+                @endif
                 <article>
                     <h2>
                         Допоможемо знайти роботу!
@@ -28,7 +36,7 @@
                         industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and
                         scrambled it to make a type specimen book.
                     </p>
-                    <a class="btn-dark-blue" href="">Пошук роботодавця</a>
+                    <a class="btn-dark-blue" href="/employee">Пошук роботодавця</a>
                 </article>
             </div>
 

@@ -2,7 +2,10 @@
 
 namespace App\Http\Middleware;
 
+use Closure;
 use Illuminate\Auth\Middleware\Authenticate as Middleware;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class Authenticate extends Middleware
 {
@@ -18,4 +21,20 @@ class Authenticate extends Middleware
             return route('login');
         }
     }
+    /**
+     * Handle an incoming request.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \Closure  $next
+     * @return mixed
+     */
+
+//    public function handle($request, Closure $next, $guard = null)
+//    {
+//        if(Auth::guard($guard)->check()){
+//            return redirect('home');
+//
+//        }
+//        return $next($request);
+//    }
 }

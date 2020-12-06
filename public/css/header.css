@@ -16,7 +16,8 @@
       height: 200px; }
     #header .header-container .header-menu-list {
       margin: 0;
-      display: flex; }
+      display: flex;
+      position: relative; }
       #header .header-container .header-menu-list .header-menu-item {
         list-style: none;
         line-height: 20px; }
@@ -28,7 +29,8 @@
           font-size: 18px;
           font-weight: 600;
           font-family: 'Poppins', sans-serif;
-          line-height: 30px; }
+          line-height: 30px;
+          cursor: pointer; }
           #header .header-container .header-menu-list .header-menu-item a:hover {
             border-bottom: 5px solid #0a2351; }
 
