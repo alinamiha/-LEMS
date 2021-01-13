@@ -14,30 +14,31 @@
             </ul>
         </div>
         {{--{{dd($user->isEmployer())}}--}}
-
-        @if($user->isEmployer() && $user->id !== $unemployed_CV->user_id)
-            <div class="wrap-vacancy-list">
-                <button class="vacancy-list-toggle-btn btn btn-primary">Вибрати вакансію</button>
-                <form method="POST" action="/job-offer/{{$unemployed_CV->id}}/store"
-                      class="form-search needs-validation">
-                    @csrf
-                    <div class="form-column">
-                        <input type="hidden" name="unemployed_id" value="{{$unemployed_CV->unemployed_id}}">
-                        <div class="vacancy-list">
-                            @foreach($user->employer->vacancies as $vacancy)
-                                <span class="vacancy-list-item">
+        @if(\Illuminate\Support\Facades\Auth::check())
+            @if($user->isEmployer() && $user->id !== $unemployed_CV->user_id)
+                <div class="wrap-vacancy-list">
+                    <button class="vacancy-list-toggle-btn btn btn-primary">Вибрати вакансію</button>
+                    <form method="POST" action="/job-offer/{{$unemployed_CV->id}}/store"
+                          class="form-search needs-validation">
+                        @csrf
+                        <div class="form-column">
+                            <input type="hidden" name="unemployed_id" value="{{$unemployed_CV->unemployed_id}}">
+                            <div class="vacancy-list">
+                                @foreach($user->employer->vacancies as $vacancy)
+                                    <span class="vacancy-list-item">
                                         <label
                                             for="title-{{$vacancy->id}}">{{$vacancy->title}} {{$unemployed->hasJobOffer($vacancy->id) ? "  (Вакансія була вже відправлена цьому користувачу!)":''}}</label>
                                         <input type="checkbox" class="form-control" id="title-{{$vacancy->id}}"
                                                name="vacancy_ids[]" value="{{$vacancy->id}}">
                                 </span>
-                            @endforeach
-                            <button class="btn btn-primary mb-3" type="submit">Відправити</button>
+                                @endforeach
+                                <button class="btn btn-primary mb-3" type="submit">Відправити</button>
+                            </div>
                         </div>
-                    </div>
-                </form>
-            </div>
+                    </form>
+                </div>
 
+            @endif
         @endif
     </section>
 @endsection

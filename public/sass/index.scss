@@ -29,7 +29,7 @@ ul {
         //display: flex;
         //justify-content: space-between;
         padding: 40px 0 0 0;
-        width: 50%;
+        //width: 50%;
         margin: 0 auto;
 
         &:last-child {
@@ -98,6 +98,7 @@ ul {
                 background-color: #0c2351;
                 width: fit-content;
                 margin: 0 auto;
+                text-align: center;
 
                 &:hover {
                     background-color: #0a23519c;
@@ -136,6 +137,7 @@ ul {
                     margin-right: 30px;
                     text-decoration: none;
                     background-color: #0c2351;
+                    text-align: center;
 
                     &:last-child {
                         margin-right: 0;

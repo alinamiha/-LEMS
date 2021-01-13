@@ -74,7 +74,7 @@ Route::get('/my-vacancies', 'JobVacancyController@showUserVacancies');
 
 
 Route::get('/employer', 'EmployerController@index');
-Route::get('/info-for-employer', 'EmployerController@isEmployer');
+//Route::get('/info-for-employer', 'EmployerController@isEmployer');
 Route::get('/employer/create', 'EmployerController@create');
 Route::post('/employer', 'EmployerController@store');
 Route::get('/employer/{employer}', 'EmployerController@show');
