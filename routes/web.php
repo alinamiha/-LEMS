@@ -56,7 +56,13 @@ Route::get('/cv', 'CurriculumVitaeController@index');
 Route::get('/cv/create', 'CurriculumVitaeController@create');
 Route::post('/cv', 'CurriculumVitaeController@store');
 Route::get('/cv/{cv}', 'CurriculumVitaeController@show');
+Route::delete('/cv/{cv}', 'CurriculumVitaeController@destroy');
 Route::get('/my-cv', 'CurriculumVitaeController@showUserCv');
+
+//Route::resource('/cv', 'CurriculumVitaeController',['only' => ['index', 'create', 'store', 'show', 'destroy']]);
+
+
+
 
 Route::get('/vacancy', 'JobVacancyController@index');
 Route::get('/vacancy/create', 'JobVacancyController@create');
@@ -78,6 +84,11 @@ Route::put('/employer/{employer}/edit', 'EmployerController@update');
 Route::get('/job-offer/', 'JobOfferController@index');
 Route::post('/job-offer/{unemployed}/store', 'JobOfferController@store');
 
+
+
+
+Route::get('/info/{id}/print', 'JobVacancyController@printResult');
+
 //Route::group(['middleware' => 'auth'], function(){
 //    Route::group(['middleware' => 'admin'], function(){
 //        Route::get('/admin', 'AdminController@index')->name('admin');
@@ -96,6 +107,11 @@ Route::delete('/record-of-services/{work}', 'RecordOfServiceController@destroy')
 
 Route::delete('/search/result', 'SearchController@index');
 Route::delete('/autocomplete', 'SearchController@search');
+//Category
+Route::get('category/search', 'JobCategoryController@search');
+
+Route::put('offers/{offer}/access', [App\Models\JobOffer::class, 'offerAccept']);
+Route::put('offers/{offer}/denied', [App\Models\JobOffer::class, 'offerDenied']);
 
 
 

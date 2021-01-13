@@ -13,27 +13,37 @@ h1, h2, h3, p, li, label {
 ul {
     list-style: none;
 }
-.info-for-user{
+
+.info-for-user {
     background-color: red;
 }
 
 .content {
 
+    margin-top: 40px;
+    h1{
+        text-align: center;
+    }
 
     section {
         //display: flex;
         //justify-content: space-between;
-        padding: 40px 0 0 0 ;
-        &:last-child{
+        padding: 40px 0 0 0;
+        width: 50%;
+        margin: 0 auto;
+
+        &:last-child {
             padding-bottom: 40px;
         }
-        h1,h2{
-            text-align: center;
-        }
+
+        //h1, h2 {
+        //    text-align: center;
+        //}
 
         .form-search {
-            width: 50%;
-            margin-right: 50px;
+            //width: 50%;
+            margin: 0 auto;
+            padding-right: 40px;
 
             .form-group-check {
                 display: flex;
@@ -44,10 +54,11 @@ ul {
             }
 
             .wrap-form-input {
-                .form-input{
+                .form-input {
                     margin-bottom: 1rem;
 
                 }
+
                 .form-input-row {
                     display: flex;
                     flex-direction: row;
@@ -136,83 +147,103 @@ ul {
                 }
             }
         }
-        .wrap-users-info{
+
+        .wrap-users-info {
             display: flex;
-           justify-content: space-around;
+            justify-content: space-around;
             flex-wrap: wrap;
 
-            .users-info{
+            .users-info {
                 display: block;
                 border: 2px solid $color;
                 padding: 30px;
                 width: 100%;
                 max-width: 45%;
                 margin: 10px;
-                h2{
+
+                h2 {
                     text-align: left;
                 }
-                ul{
+
+                ul {
                     padding-inline-start: 0;
                     padding-bottom: 0;
-                    li{
+
+                    li {
                         font-size: 18px;
-                        b{
+
+                        b {
                             margin-right: 10px;
                         }
                     }
                 }
-                a{
+                &.hidden{
+                    display: none;
+                }
+
+                a , button{
                     display: block;
                     color: $color;
                     font-size: 16px;
                     margin-top: 15px;
                     //text-align: right;
                     text-decoration: none;
-                    &:hover{
+
+                    &:hover {
                         text-decoration: underline;
                     }
                 }
             }
-            &.users-info-details{
+
+            &.users-info-details {
                 flex-direction: column;
                 width: 100%;
-                h1{
+
+                h1 {
                     text-align: left;
                 }
-                .wrap-span{
+
+                .wrap-span {
                     display: flex;
                     flex-direction: column;
                     text-align: right;
                 }
-                ul{
+
+                ul {
                     padding-inline-start: 0;
                     padding-bottom: 0;
-                    li{
-                        b{
+
+                    li {
+                        b {
                             margin-right: 10px;
                         }
                     }
                 }
-                .users-info{
+
+                .users-info {
                     width: 70%;
                 }
             }
         }
-        .wrap-cat{
+
+        .wrap-cat {
             display: flex;
-            .item-cat{
+
+            .item-cat {
                 width: 300px;
                 height: 300px;
                 background-image: url("/img/new_teacher.jpeg");
                 background-repeat: no-repeat;
                 background-size: cover;
                 background-position: center;
-                &:hover{
+
+                &:hover {
                     opacity: 0.7;
                 }
             }
         }
-        .my-account-wrap-info{
+
+        .my-account-wrap-info {
             background: #0a2351;
             width: 100%;
             height: 100px;
@@ -222,11 +253,13 @@ ul {
             display: flex;
             justify-content: center;
             flex-direction: column;
-            span{
+
+            span {
                 font-size: 30px;
                 color: #ffffff;
             }
-            a{
+
+            a {
                 font-size: 20px;
                 font-weight: bold;
                 color: #ffffff;
@@ -234,7 +267,8 @@ ul {
         }
     }
 }
-.option-list-toggle{
+
+.option-list-toggle {
     display: none;
     background-color: #fff;
     width: 100%;
@@ -246,17 +280,21 @@ ul {
     padding: 0 20px;
     z-index: 10;
 }
-.vacancy-list{
+
+.vacancy-list {
     margin: 20px 0;
     border: 2px solid #1b1e21;
     padding: 25px;
     display: none;
-    .vacancy-list-item{
+
+    .vacancy-list-item {
         display: flex;
-        label{
+
+        label {
             order: 2;
         }
-        input[type="checkbox"]{
+
+        input[type="checkbox"] {
             width: 20px;
             height: 20px;
             align-items: center;
@@ -265,30 +303,64 @@ ul {
         }
     }
 }
-.record-of-services-wrap{
+
+.record-of-services-wrap {
     display: flex;
-    section{
+
+    section {
         width: 50%;
         margin-right: 40px;
 
-        &.record-of-services-section{
+        &.record-of-services-section {
 
-            form{
+            form {
                 width: 100%;
             }
         }
     }
 }
-.wrap-btn-work{
+
+.wrap-btn-work {
     display: flex;
     flex-wrap: wrap;
 
-    button{
+    button {
         width: 100px;
     }
 }
-.main-page-img{
+
+.main-page-img {
     margin: 0 auto;
     display: block;
     width: 800px;
+}
+
+#job-categories-search {
+    margin: 40px auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    input {
+        width: 500px;
+        height: 50px;
+    }
+}
+.hidden{
+    display: none;
+}
+table, th, td {
+    border: 1px solid black;
+    border-collapse: collapse;
+    padding: 20px;
+}
+table{
+    margin: 20px auto;
+}
+.admin{
+    margin: 20px 0 50px;
+    display: block;
+    h1{
+        text-align: center;
+    }
 }

@@ -2,7 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\CurriculumVitae;
 use App\Models\JobOffer;
+use App\Models\JobVacancy;
+use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -23,10 +27,18 @@ class JobOfferController extends Controller
                 'job_vacancies.title as title',
                 'job_vacancies.type_of_working as type_of_working',
                 'job_vacancies.post as post',
-                'job_vacancies.sales as sales',
+                'job_offers.id as job_offer_id',
+                'job_offers.status as status',
+                'job_vacancies.sales as sales'
             ])
             ->get();;
-        return view('jobOffer.index', ['offers' => $offers]);
+        $offers_denied = JobOffer::where('status', 2)->get();
+        foreach ($offers as $offer) {
+            $users_offer = JobOffer::where('unemployed_id', $unemployed->id)
+                ->whereBetween('created_at', [Carbon::now()->subDays(7), Carbon::now()])->count();
+        }
+
+        return view('jobOffer.index', ['offers' => $offers, 'users_offer' => $users_offer, 'offers_denied' => $offers_denied]);
 
     }
 
@@ -66,7 +78,7 @@ class JobOfferController extends Controller
      */
     public function show(JobOffer $jobOffer)
     {
-        //
+
     }
 
     /**
@@ -102,4 +114,5 @@ class JobOfferController extends Controller
     {
         //
     }
+
 }

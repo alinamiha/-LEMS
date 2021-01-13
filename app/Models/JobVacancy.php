@@ -25,4 +25,7 @@ class JobVacancy extends Model
 
         return $this->belongsTo('App\Models\Employer');
     }
+    public function jobOffer(){
+        return$this->hasMany('App\Model\JobOffer');
+    }
 }

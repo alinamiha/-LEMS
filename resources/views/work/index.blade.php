@@ -39,6 +39,7 @@
                         </div>
                         <button class="btn btn-primary mb-3" type="submit">Додати</button>
                     </div>
+                </div>
             </form>
         </section>
         @if($works->count() > 0)

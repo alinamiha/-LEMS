@@ -48,6 +48,10 @@ class ForeignKeys extends Migration
                 ->references('id')
                 ->on('job_vacancies')
                 ->onDelete('cascade');
+            $table->foreign('unemployed_id')
+                ->references('id')
+                ->on('unemployeds')
+                ->onDelete('cascade');
         });
 
         Schema::table('unemployeds', function (Blueprint $table) {
@@ -92,11 +96,11 @@ class ForeignKeys extends Migration
 
         \App\Models\JobVacancy::factory()->count(5)->create(['employer_id' => $employer->id, ]);
 
-        \App\Models\Unemployed::factory()->count(5)->create();
+        \App\Models\Unemployed::factory()->count(2)->create();
         \App\Models\Employer::factory()->count(5)->create();
         \App\Models\CurriculumVitae::factory()->count(5)->create();
         \App\Models\JobVacancy::factory()->count(5)->create();
-        \App\Models\Allowance::factory()->count(5)->create();
+        \App\Models\Allowance::factory()->count(3)->create();
 
     }
 

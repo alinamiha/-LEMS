@@ -4,9 +4,9 @@
     <section>
         <h1>Особистий акаунт</h1>
         <ul>
-            <li><a href="">Особисті дані</a></li>
+            <li><a href="/my-account">Особисті дані</a></li>
             @if($user->type === "unemployed")
-                <li><a href="/record-of-services/create">Мій послужний список</a></li>
+                <li><a href="/record-of-services">Мій послужний список</a></li>
                 <li><a href="/allowance/create">Оформити заявку на отримання допомоги</a></li>
                 <li><a href="/my-allowances">Мої заявки на отримання пособія</a></li>
                 <li><a href="/cv/create">Додати резюме</a></li>
@@ -15,7 +15,7 @@
             @elseif($user->type === "employer")
                 <li><a href="/vacancy/create">Додати вакансію</a></li>
                 <li><a href="/my-vacancies">Мої вакансії</a></li>
-{{--                <li><a href="">Відгуки від робітників</a></li>--}}
+                <li><a href="/job-offer/info">Відгуки від робітників</a></li>
             @endif
         </ul>
     </section>

@@ -12,10 +12,10 @@ class Controller extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
 
-//    public function isTypeOfUser()
-//    {
-//        $user = Auth::user();
-//        return view('my-account', ['user' => $user]);
-//
-//    }
+    public function isTypeOfUser()
+    {
+        $user = Auth::user();
+        return view('my-account', ['user' => $user]);
+
+    }
 }

@@ -9,8 +9,7 @@ use Laravel\Scout\Searchable;
 class CurriculumVitae extends Model
 {
     use HasFactory;
-    use Searchable;
-
+    protected $fillable = ['unemployed_id', 'cv_name', 'description', 'type_of_working', 'city', 'post'];
     public function unemployed(){
             return $this->belongsTo('App\Models\Unemployed', 'id', 'unemployed_id');
     }

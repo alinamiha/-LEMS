@@ -105,10 +105,6 @@ class RecordOfServiceController extends Controller
      */
     public function destroy($id)
     {
-//        if (!Auth::check() || !Auth::user()->type == 'admin') {
-//            return redirect('/');
-//        }
-
         $user = RecordOfService::find($id)->delete();
         return back();
     }

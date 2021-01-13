@@ -28,6 +28,40 @@ $('.vacancy-list-toggle-btn').on('click', function (){
 })
 
 
+var tahoe = {
+
+    resorts: ["Kirkwood","Squaw","Alpine","Heavenly","Northstar"], print: (delay=1000) => {
+
+        setTimeout(() => {
+
+            console.log(this.resorts.join(","))
+
+        }, delay)
+
+    }
+
+}
+
+tahoe.print()
+
+
+
+var tahoe = {
+
+    resorts: ["Kirkwood","Squaw","Alpine","Heavenly","Northstar"], print: function(delay=1000) {
+
+        setTimeout(() => {
+            console.log(this)
+
+            console.log(this === window)
+
+        }, delay)
+
+    }
+
+}
+
+tahoe.print()
 
 
 

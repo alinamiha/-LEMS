@@ -2,13 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Allowance;
 use App\Models\CurriculumVitae;
 use App\Models\Unemployed;
-use App\Models\User;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Request;
 
 
 class CurriculumVitaeController extends Controller
@@ -46,18 +44,29 @@ class CurriculumVitaeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
-        $arr = Auth::user()->unemployed->allowance->count();
-//       dd($arr);
-        return view('cv.create');
+        $CVs = DB::table('users')
+            ->join('unemployeds', function ($join) {
+                $join->on('users.id', '=', 'unemployeds.user_id')
+                    ->where('users.id', Auth::user()->id);
+            })
+            ->join('curriculum_vitaes', 'curriculum_vitaes.unemployed_id', '=', 'unemployeds.id')
+            ->select([
+                'users.id as id',
+                'curriculum_vitaes.id as id',
+                'curriculum_vitaes.cv_name as title',
+                'curriculum_vitaes.created_at as created_at',
+            ])
+            ->orderBy('created_at','desc')
+            ->get();
+        return view('cv.create', ['CVs' => $CVs]);
     }
 
     /**
      * Store a newly created resource in storage.
-     *
-     * @param \Illuminate\Http\Request $request
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
      */
     public function store(Request $request)
     {
@@ -81,8 +90,20 @@ class CurriculumVitaeController extends Controller
         $cv->post = request('post');
 
         $cv->save();
+//
+//        $res = CurriculumVitae::create([
+//            'unemployed_id' => $request->$unemployed->id,
+//            'cv_name' => $request->cv_name,
+//            'description' => $request->description,
+//            'type_of_working' => $request->type_of_working,
+//            'city' => $request->city,
+//            'post' => $request->post]);
 
-        return redirect('/my-account');
+//        $data = ['id' => $res->id, 'title' => $request->cv_name, 'text' => $request->description];
+
+
+        return response()->json($cv);
+//        return response();
     }
 
     /**
@@ -111,6 +132,7 @@ class CurriculumVitaeController extends Controller
                 'allowances.birthday as birthday',
             ])
             ->first();
+
         return view(    'cv.show', [
             'unemployed_CV' => $cv,
             'user' => Auth::user(),
@@ -143,13 +165,17 @@ class CurriculumVitaeController extends Controller
 
     /**
      * Remove the specified resource from storage.
-     *
-     * @param \App\Models\CurriculumVitae $curriculumVitae
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     * @param $cv
+     * @return \Illuminate\Http\RedirectResponse
      */
-    public function destroy(CurriculumVitae $curriculumVitae)
+    public function destroy(Request $request, $cv)
     {
-        //
+        $curriculumVitae = CurriculumVitae::find($cv);
+        if ($curriculumVitae) {
+            $curriculumVitae->delete();
+        }
+        return back();
     }
 
     public function showUserCv(){
@@ -167,5 +193,6 @@ class CurriculumVitaeController extends Controller
             ->get();
         return view('cv.my-cv', ['CVs' => $CVs]);
     }
+
 
 }

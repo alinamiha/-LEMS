@@ -22,9 +22,12 @@
     #footer .footer-container .row {
       width: 100%;
       justify-content: space-between; }
-      #footer .footer-container .row .footer-section-item:nth-child(2) ul li {
+      #footer .footer-container .row .footer-section-item:nth-child(2) .footer-section-item-title h3, #footer .footer-container .row .footer-section-item:nth-child(3) .footer-section-item-title h3 {
+        color: #ffffff !important;
+        margin-left: 30px; }
+      #footer .footer-container .row .footer-section-item:nth-child(2) ul li, #footer .footer-container .row .footer-section-item:nth-child(3) ul li {
         margin: 7px 0; }
-        #footer .footer-container .row .footer-section-item:nth-child(2) ul li a {
+        #footer .footer-container .row .footer-section-item:nth-child(2) ul li a, #footer .footer-container .row .footer-section-item:nth-child(3) ul li a {
           color: #ffffff; }
       #footer .footer-container .row .footer-section-item:nth-child(1), #footer .footer-container .row .footer-section-item:nth-child(4) {
         margin: auto; }

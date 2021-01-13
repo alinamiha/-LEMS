@@ -150,6 +150,7 @@ class AllowanceController extends Controller
                 'users.id as id',
                 'allowances.id as id',
                 'allowances.citizenship as citizenship',
+                'allowances.status as status',
 //                'curriculum_vitaes.cv_name as title',
             ])
             ->get();
