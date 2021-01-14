@@ -31,11 +31,6 @@
   <component name="ChangeListManager">
     <list default="true" id="9eefd488-b861-40dc-8272-801ee7ac32c8" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/css/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/index.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/css/index.css.map" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/index.css.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/sass/index.scss" beforeDir="false" afterPath="$PROJECT_DIR$/public/sass/index.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/cv/show.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/cv/show.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -241,6 +236,10 @@
       <workItem from="1607433885448" duration="2697000" />
       <workItem from="1607782358649" duration="19033000" />
       <workItem from="1610530345539" duration="909000" />
+      <workItem from="1610555404763" duration="586000" />
+      <workItem from="1610566770462" duration="261000" />
+      <workItem from="1610579721834" duration="329000" />
+      <workItem from="1610582366263" duration="354000" />
     </task>
     <servers />
   </component>
@@ -272,6 +271,10 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="WindowStateProjectService">
+    <state x="496" y="187" key="#Deployment" timestamp="1610555518704">
+      <screen x="0" y="25" width="1792" height="1012" />
+    </state>
+    <state x="496" y="187" key="#Deployment/0.25.1792.1012@0.25.1792.1012" timestamp="1610555518704" />
     <state x="960" y="336" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1607260839857">
       <screen x="0" y="25" width="1792" height="1002" />
     </state>
@@ -334,6 +337,10 @@
     <state x="790" y="192" width="635" height="720" key="find.popup/0.25.1792.1005@0.25.1792.1005" timestamp="1607852168973" />
     <state x="790" y="192" width="635" height="723" key="find.popup/0.25.1792.1008@0.25.1792.1008" timestamp="1607475411626" />
     <state x="790" y="193" width="635" height="726" key="find.popup/0.25.1792.1012@0.25.1792.1012" timestamp="1610531128571" />
+    <state x="803" y="259" key="ftp.server.browser" timestamp="1610555455310">
+      <screen x="0" y="25" width="1792" height="1012" />
+    </state>
+    <state x="803" y="259" key="ftp.server.browser/0.25.1792.1012@0.25.1792.1012" timestamp="1610555455310" />
     <state width="600" height="428" key="javadoc.popup" timestamp="1606081259117">
       <screen x="0" y="23" width="1792" height="1033" />
     </state>
